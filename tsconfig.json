@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"jsx": "preserve",
+		"jsxImportSource": "solid-js",
+		"types": ["vite/client", "wicg-file-system-access"],
+		"noEmit": true,
+		"isolatedModules": true,
+		"baseUrl": "./",
+		"strict": true,
+		"skipLibCheck": true
+	},
+	"exclude": ["vite.config.ts"]
+}
