@@ -1,6 +1,5 @@
 import { parseMetadata } from "@uswriting/exiftool";
 import exifr from "exifr";
-import MediaInfoFactory from "mediainfo.js";
 import * as MP4Box from "mp4box";
 import { nameAndExtension } from "./file-meta-naming";
 import { LogFunction } from "./prep-store";
@@ -48,16 +47,16 @@ export function fileTypeFromName(name: string): "image" | "video" | "other" {
 	return "other";
 }
 
-const mediaInfo = await MediaInfoFactory({
-	format: "object",
-	locateFile: (path: string, prefix: string) => {
-		if (path.endsWith(".wasm")) {
-			// tell it to load from the root where viteStaticCopy placed it
-			return "/" + path;
-		}
-		return prefix + path;
-	},
-});
+// const mediaInfo = await MediaInfoFactory({
+// 	format: "object",
+// 	locateFile: (path: string, prefix: string) => {
+// 		if (path.endsWith(".wasm")) {
+// 			// tell it to load from the root where viteStaticCopy placed it
+// 			return "/" + path;
+// 		}
+// 		return prefix + path;
+// 	},
+// });
 
 async function getExifrCreationDate(fileObject: File): Promise<Date | null> {
 	// Use exifr for images
@@ -70,59 +69,59 @@ async function getExifrCreationDate(fileObject: File): Promise<Date | null> {
 	return null;
 }
 
-async function getMediaInfoCreationDate(
-	file: FileOfFolder,
-	fileObject: File,
-): Promise<Date | null> {
-	try {
-		const result = await mediaInfo.analyzeData(
-			() => fileObject.size,
-			async (chunkSize, offset) => {
-				const chunk = fileObject.slice(offset, offset + chunkSize);
-				return new Uint8Array(await chunk.arrayBuffer());
-			},
-		);
+// async function getMediaInfoCreationDate(
+// 	file: FileOfFolder,
+// 	fileObject: File,
+// ): Promise<Date | null> {
+// 	try {
+// 		const result = await mediaInfo.analyzeData(
+// 			() => fileObject.size,
+// 			async (chunkSize, offset) => {
+// 				const chunk = fileObject.slice(offset, offset + chunkSize);
+// 				return new Uint8Array(await chunk.arrayBuffer());
+// 			},
+// 		);
 
-		const tracks = result.media?.track ?? [];
+// 		const tracks = result.media?.track ?? [];
 
-		// general track - encoded date
-		const general = tracks.find((t) => t["@type"] === "General");
-		if (general?.Encoded_Date) {
-			const dateStr = general.Encoded_Date.replace(/^UTC\s*/, "");
-			const date = new Date(dateStr);
-			if (!isNaN(date.getTime())) return date;
-		}
+// 		// general track - encoded date
+// 		const general = tracks.find((t) => t["@type"] === "General");
+// 		if (general?.Encoded_Date) {
+// 			const dateStr = general.Encoded_Date.replace(/^UTC\s*/, "");
+// 			const date = new Date(dateStr);
+// 			if (!isNaN(date.getTime())) return date;
+// 		}
 
-		// general track - tagged date
-		if (general?.Tagged_Date) {
-			const dateStr = general.Tagged_Date.replace(/^UTC\s*/, "");
-			const date = new Date(dateStr);
-			if (!isNaN(date.getTime())) return date;
-		}
+// 		// general track - tagged date
+// 		if (general?.Tagged_Date) {
+// 			const dateStr = general.Tagged_Date.replace(/^UTC\s*/, "");
+// 			const date = new Date(dateStr);
+// 			if (!isNaN(date.getTime())) return date;
+// 		}
 
-		// quick time - not working?
-		// const qtTrack = tracks.find((t) => {
-		// 	t["@type"] === "Other" &&
-		// 		(t["com.apple.quicktime.creationdate"] ||
-		// 			t["CreationDate"] ||
-		// 			t["CreateDate"]);
-		// });
-		// if (qtTrack) {
-		// 	const raw =
-		// 		qtTrack["com.apple.quicktime.creationdate"] ??
-		// 		qtTrack["CreationDate"] ??
-		// 		qtTrack["CreateDate"];
-		// 	if (raw) {
-		// 		const qtDate = new Date(raw.replace(/^UTC\s*/, ""));
-		// 		if (!isNaN(qtDate.getTime())) return qtDate;
-		// 	}
-		// }
-	} catch (error) {
-		console.warn("MediaInfo error:", file.handle.name, error);
-	}
+// 		// quick time - not working?
+// 		// const qtTrack = tracks.find((t) => {
+// 		// 	t["@type"] === "Other" &&
+// 		// 		(t["com.apple.quicktime.creationdate"] ||
+// 		// 			t["CreationDate"] ||
+// 		// 			t["CreateDate"]);
+// 		// });
+// 		// if (qtTrack) {
+// 		// 	const raw =
+// 		// 		qtTrack["com.apple.quicktime.creationdate"] ??
+// 		// 		qtTrack["CreationDate"] ??
+// 		// 		qtTrack["CreateDate"];
+// 		// 	if (raw) {
+// 		// 		const qtDate = new Date(raw.replace(/^UTC\s*/, ""));
+// 		// 		if (!isNaN(qtDate.getTime())) return qtDate;
+// 		// 	}
+// 		// }
+// 	} catch (error) {
+// 		console.warn("MediaInfo error:", file.handle.name, error);
+// 	}
 
-	return null;
-}
+// 	return null;
+// }
 
 async function getMp4BoxQuickTimeCreationDate(
 	file: FileOfFolder,
