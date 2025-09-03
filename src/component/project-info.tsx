@@ -52,7 +52,10 @@ export const ProjectInfo = () => {
 			</p>
 			<p>
 				Checkout the{" "}
-				<a href="TODO" class="underline">
+				<a
+					href="https://github.com/OliverGrack/gphotos-prepare-duck/blob/main/README.md"
+					class="underline"
+				>
 					Readme
 				</a>{" "}
 				for more details.

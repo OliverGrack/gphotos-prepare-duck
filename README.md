@@ -12,7 +12,7 @@ GPhoto-Prepare-Duck is a little tool that prepares a [Google Photos Takout](http
 ## How to use
 
 No need to install anything, the tool works in the browser.
-Visit TODO and follow the onscreen instructions. You will need to use a browser that supports the file system [File System Access API](https://caniuse.com/native-filesystem-api). Currently that means a Chromium based browser.
+Visit [olivergrack.github.io/gphotos-prepare-duck/](https://olivergrack.github.io/gphotos-prepare-duck/) and follow the onscreen instructions. You will need to use a browser that supports the file system [File System Access API](https://caniuse.com/native-filesystem-api). Currently that means a Chromium based browser.
 
 ## Current Ente Photos import shortcomings
 
