@@ -1,6 +1,6 @@
 # GPhoto-Prepare-Duck
 
-GPhoto-Prepare-Duck is a little tool that prepares a [Google Photos Takout](https://support.google.com/accounts/answer/9666875?hl=en) so it can be used from other tools with fewer issues. It maintly was developed to be used for Google Photos exports that are later imported to [Ente Photos](https://ente.io/de/). However, may also be of used in other scenarios. It is not supported nor endorsed by Ente nor Google.
+GPhoto-Prepare-Duck is a little tool that prepares a [Google Photos Takout](https://support.google.com/accounts/answer/9666875?hl=en) so it can be used from other tools with fewer issues. It mainly was developed to be used for Google Photos exports that are later imported to [Ente Photos](https://ente.io/de/). However, may also be of used in other scenarios. It is not supported nor endorsed by Ente nor Google.
 
 ## What it does
 
