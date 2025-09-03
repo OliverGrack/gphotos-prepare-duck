@@ -49,7 +49,7 @@ export function createPrepStore() {
 			nextStep();
 
 			logFileHandle = await dirHandle.getFileHandle(
-				"gphoto-prepare-duck-log.txt",
+				"GPhotos-Prepare-Duck-log.txt",
 				{ create: true },
 			);
 			await openWriteable();

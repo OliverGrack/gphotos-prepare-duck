@@ -22,7 +22,7 @@ const App: Component = () => {
 	return (
 		<PrepStoreContext.Provider value={store}>
 			<div class="max-w-[90ch] mx-auto p-4 flex flex-col gap-2">
-				<h1 class="text-2xl font-black">GPhoto-Prepare-Duck 🦆</h1>
+				<h1 class="text-2xl font-black">GPhotos-Prepare-Duck 🦆</h1>
 				<Show when={store.step() === 1}>
 					<ProjectInfo />
 				</Show>
@@ -245,7 +245,7 @@ const App: Component = () => {
 						</h2>
 						<p>
 							For the full log see the
-							'gphoto-prepare-duck-log.txt' file inside the
+							'GPhotos-Prepare-Duck-log.txt' file inside the
 							selected folder.
 						</p>
 						<For each={store.recentLog()}>
